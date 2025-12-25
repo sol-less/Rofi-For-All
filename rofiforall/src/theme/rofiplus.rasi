@@ -1,0 +1,107 @@
+@import "/home/sol_/.cache/wal/colors-rofi-dark.rasi"
+
+/* ==========================================================================
+   File: simple-wal.rasi
+   ========================================================================== */
+
+/* Import Pywal colors */
+// @import "~/.cache/wal/colors-rofi-dark.rasi"
+
+configuration {
+    modi:                       "drun,run,filebrowser,window";
+    show-icons:                 true;
+    display-drun:               "󰘵  ";
+    display-run:                "  ";
+    display-filebrowser:        "  ";
+    display-window:             "󱂬  ";
+    display-dmenu:              "󰘳  ";
+    drun-display-format:        "{name}";
+    font:                       "Google Sans Medium 12";
+}
+
+* {
+    /* Use Pywal variables */
+    background-color:            @background;
+    foreground-color:            @foreground;
+    
+    /* Variables for readability */
+    selected-bg:                 @color2; /* This is your accent color */
+    selected-fg:                 @background; /* This makes the text dark when selected */
+}
+
+window {
+    width:            60%;
+    height:           55%;
+
+    border:           2px;
+    border-color:     @color2;
+    border-radius:    12px;
+    padding:          0px;
+    background-color: @background;
+}
+
+mainbox {
+    spacing:          10px;
+    padding:          20px;
+    children:         [ "inputbar", "listview" ];
+}
+
+/* ---- Input Bar ---- */
+inputbar {
+    enabled:    true;
+    spacing:    15px;
+    padding:    10px;
+    background-color: transparent;
+    children:   [ "prompt", "entry" ];
+}
+
+prompt {
+    text-color:     @foreground;
+    font:           "Google Sans 500 12";
+    vertical-align: 0.5;
+}
+
+entry {
+    placeholder:       "Apps..";
+    placeholder-color: rgba(255, 255, 255, 0.2);
+    text-color:        @foreground;
+}
+
+/* ---- List View ---- */
+listview {
+    fixed-height: 0;
+    lines:        8;
+    spacing:      5px;
+    scrollbar:    false;
+    padding:      5px 0px 0px;
+}
+
+/* ---- Elements (The Rows) ---- */
+element {
+    padding:          8px;
+    spacing:          10px;
+    border-radius:    8px;
+    background-color: transparent;
+    text-color:       @foreground;
+}
+
+/* This is the fix for your OCD/Selection issue */
+element selected {
+    background-color: @selected-bg; /* Using accent color */
+    text-color:       @selected-fg; /* Using dark background color */
+}
+
+/* These force the text and icon to change color when the row is selected */
+element-text, element-icon {
+    background-color: inherit;
+    text-color:       inherit;
+    font:             inherit;
+}
+
+element-text selected {
+    text-color: @selected-fg;
+}
+
+element-icon {
+    size: 24px;
+}
